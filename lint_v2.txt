@@ -1,0 +1,68 @@
+﻿
+D:\protfolio\portfolio\src\components\About.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\Contact.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\Education.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\Experience.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\Hero.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\Navbar.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\Projects.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\ScrollProgress.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\Skills.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\protfolio\portfolio\src\components\ThemeProvider.jsx
+  48:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+D:\protfolio\portfolio\src\components\canvas\BackgroundCanvas.jsx
+  15:19  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  13 |     
+  14 |     for (let i = 0; i < particleCount; i++) {
+> 15 |         const u = Math.random();
+     |                   ^^^^^^^^^^^^^ Cannot call impure function
+  16 |         const v = Math.random();
+  17 |         const theta = u * 2.0 * Math.PI;
+  18 |         const phi = Math.acos(2.0 * v - 1.0);                                                                        react-hooks/purity
+  16:19  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  14 |     for (let i = 0; i < particleCount; i++) {
+  15 |         const u = Math.random();
+> 16 |         const v = Math.random();
+     |                   ^^^^^^^^^^^^^ Cannot call impure function
+  17 |         const theta = u * 2.0 * Math.PI;
+  18 |         const phi = Math.acos(2.0 * v - 1.0);
+  19 |         const r = Math.cbrt(Math.random()) * 8; // Radius                   react-hooks/purity
+  19:29  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  17 |         const theta = u * 2.0 * Math.PI;
+  18 |         const phi = Math.acos(2.0 * v - 1.0);
+> 19 |         const r = Math.cbrt(Math.random()) * 8; // Radius
+     |                             ^^^^^^^^^^^^^ Cannot call impure function
+  20 |         
+  21 |         const x = r * Math.sin(phi) * Math.cos(theta);
+  22 |         const y = r * Math.sin(phi) * Math.sin(theta);  react-hooks/purity
+
+Γ£û 13 problems (13 errors, 0 warnings)
+
