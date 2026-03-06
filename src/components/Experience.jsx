@@ -4,16 +4,7 @@ const experiences = [
   {
     role: "AI/ML Intern",
     company: "Awakeen Studio Pvt Ltd",
-    duration: "Present",
-    description: "Contributing to real-world AI projects. Responsibilities include data preprocessing, machine learning model development, feature engineering, and rigorous model evaluation.",
     skills: ["Python", "Machine Learning", "Data Preprocessing", "Feature Engineering"]
-  },
-  {
-    role: "Freelance AI Developer",
-    company: "Upwork / Freelance",
-    duration: "2023 - Present",
-    description: "Built custom AI solutions for international clients. Specialized in RAG pipelines, NLP chatbots, and automating data processing workflows for small to medium businesses.",
-    skills: ["LangChain", "OpenAI API", "React", "Node.js"]
   }
 ];
 

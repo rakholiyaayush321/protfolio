@@ -66,22 +66,5 @@ export const projects = [
       'Responsive React-Router DOM handling robust sub-directory access'
     ],
     architecture: 'Developed on the Vite + React compilation pipeline guaranteeing hot-module reloading and heavily minified production bundles. The application forsakes robust, yet heavy packages (like Framer Motion and ThreeJS) in favor of optimized, custom, and hardware-accelerated CSS keyframe animations.'
-  },
-  {
-    id: 'cv-surveillance',
-    title: 'Computer Vision Surveillance',
-    description: 'Real-time anomaly detection system for CCTV feeds using YOLOv8 and temporal action localization to identify suspicious behavior.',
-    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=800',
-    tags: ['Computer Vision', 'YOLOv8', 'PyTorch', 'OpenCV'],
-    github: 'https://github.com/rakholiyaayush321',
-    demo: '#',
-    overview: 'An intelligent surveillance pipeline processing multi-stream video feeds in real-time. By leveraging the latest YOLOv8 architectures optimized with TensorRT, the system tracks entity movements, analyzes spatial relationships, and flags anomalous activities (like unattended bags or aggressive behavior) without human intervention.',
-    keyFeatures: [
-      'Multi-camera concurrent stream processing (RTSP)',
-      'Custom-trained YOLOv8 models for anomaly detection',
-      'High-throughput inference optimization via TensorRT',
-      'Automated alert generation and frame capture'
-    ],
-    architecture: 'Frames are extracted using OpenCV and passed directly into GPU memory buffers. A PyTorch-based inference engine executes the object detection and action recognition passes. The results are aggregated and served via a lightweight Flask API to a monitoring dashboard.'
   }
 ];
