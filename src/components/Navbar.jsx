@@ -1,185 +1,129 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Cpu, Github, Linkedin, Download } from 'lucide-react';
+import { Menu, X, Cpu, Github, Linkedin, Download, Eye } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { navLinks } from '../constants';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      // Determine active section from scroll position
-      const sections = navLinks.map((l) => document.getElementById(l.id)).filter(Boolean);
-      const current = sections.findLast((section) => {
-        const rect = section.getBoundingClientRect();
-        return rect.top <= 120;
-      });
-      if (current) setActiveSection(current.id);
+      setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleNavClick = (id) => {
     setIsOpen(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-3' : 'py-6'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`rounded-2xl flex items-center justify-between px-6 py-3 transition-all duration-500 ${
-            scrolled
-              ? 'bg-[var(--background)]/90 backdrop-blur-xl border border-[var(--glass-border)] shadow-[0_4px_30px_rgba(0,0,0,0.15)]'
-              : 'bg-transparent border-transparent shadow-none'
-          }`}
-        >
-          {/* Logo */}
-          <button
-            onClick={() => handleNavClick('home')}
-            className="flex items-center space-x-2 group"
-          >
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 group-hover:rotate-12 transition-transform duration-300">
-              <Cpu size={20} />
-            </div>
-            <span className="text-xl font-black tracking-tighter">
-              AYUSH<span className="text-primary">.</span>
-            </span>
-          </button>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800 shadow-sm py-4' : 'bg-transparent py-6'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        
+        {/* Logo */}
+        <Link to="/" onClick={() => handleNavClick('home')} className="flex items-center space-x-2 group z-50">
+          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white">
+            <Cpu size={20} />
+          </div>
+          <span className="text-xl font-black tracking-tighter text-foreground">
+            AYUSH<span className="text-primary">.</span>
+          </span>
+        </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => (
-              <button
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center space-x-1">
+          {navLinks.map((link) => (
+            link.external ? (
+              <a
                 key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className={`relative px-4 py-2 text-sm font-bold uppercase tracking-widest transition-colors rounded-lg ${
-                  activeSection === link.id
-                    ? 'text-primary'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-primary'
-                }`}
+                href={link.id}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors rounded-lg"
               >
                 {link.title}
-                {activeSection === link.id && (
-                  <motion.div
-                    layoutId="active-nav-indicator"
-                    className="absolute inset-0 bg-primary/10 rounded-lg border border-primary/20"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
+              </a>
+            ) : (
+              <Link
+                key={link.id}
+                to={link.id}
+                className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-colors rounded-lg ${location.pathname === link.id ? 'text-primary' : 'text-slate-500 hover:text-primary'}`}
+              >
+                {link.title}
+              </Link>
+            )
+          ))}
+        </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-3">
-            <a
-              href="https://github.com/rakholiyaayush321"
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
-              aria-label="GitHub"
-            >
-              <Github size={18} />
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center space-x-3">
+          <ThemeToggle />
+          
+          <div className="flex items-center gap-2">
+            
+            <a href="/resume.pdf" download className="p-2 text-slate-500 hover:text-primary transition-colors group relative" aria-label="Download Resume">
+              <Download size={20} />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] uppercase font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Download</span>
             </a>
-            <a
-              href="https://linkedin.com/in/ayush-rakholiya"
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={18} />
-            </a>
-            <ThemeToggle />
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-lg shadow-primary/25 hover:scale-105"
-            >
-              <Download size={14} />
-              <span>Resume</span>
-            </a>
-          </div>
-
-          {/* Mobile: Theme + Menu */}
-          <div className="md:hidden flex items-center space-x-3">
-            <ThemeToggle />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-foreground hover:bg-primary/10 transition-colors"
-              aria-label="Toggle menu"
-            >
-              <AnimatePresence mode="wait">
-                {isOpen ? (
-                  <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <X size={24} />
-                  </motion.div>
-                ) : (
-                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <Menu size={24} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Drawer */}
-      <AnimatePresence>
+        {/* Mobile menu button */}
+        <div className="md:hidden flex items-center gap-4 z-50">
+          <ThemeToggle />
+          <button onClick={() => setIsOpen(!isOpen)} className="text-foreground p-2 -mr-2" aria-label="Menu">
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile drawer */}
         {isOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden mx-4 mt-2 overflow-hidden rounded-2xl bg-[var(--background)]/95 backdrop-blur-xl border border-[var(--glass-border)] shadow-xl"
-          >
-            <div className="px-4 py-5 space-y-1">
-              {navLinks.map((link, idx) => (
-                <motion.button
-                  key={link.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                  onClick={() => handleNavClick(link.id)}
-                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-all ${
-                    activeSection === link.id
-                      ? 'text-primary bg-primary/10 border border-primary/20'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-primary hover:bg-primary/5'
-                  }`}
-                >
-                  {link.title}
-                </motion.button>
+          <div className="fixed inset-0 z-40 bg-background md:hidden pt-24 pb-10 px-4 flex flex-col justify-between overflow-y-auto">
+            <div className="space-y-2">
+              {navLinks.map((link) => (
+                link.external ? (
+                  <a
+                    key={link.id}
+                    href={link.id}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-4 text-lg font-black uppercase tracking-widest text-foreground hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl"
+                  >
+                    {link.title}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.id}
+                    to={link.id}
+                    onClick={() => handleNavClick(link.id)}
+                    className={`block px-4 py-4 text-lg font-black uppercase tracking-widest rounded-xl ${location.pathname === link.id ? 'text-primary bg-primary/10' : 'text-foreground hover:bg-slate-100 dark:hover:bg-slate-900'}`}
+                  >
+                    {link.title}
+                  </Link>
+                )
               ))}
-
-              <div className="pt-4 mt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-center gap-4">
-                <a href="https://github.com/rakholiyaayush321" target="_blank" rel="noreferrer" className="p-2 text-slate-400 hover:text-primary transition-colors">
-                  <Github size={22} />
-                </a>
-                <a href="https://linkedin.com/in/ayush-rakholiya" target="_blank" rel="noreferrer" className="p-2 text-slate-400 hover:text-primary transition-colors">
-                  <Linkedin size={22} />
-                </a>
-                <a href="/resume.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary-hover transition-all">
-                  <Download size={14} />
-                  <span>Resume</span>
-                </a>
-              </div>
             </div>
-          </motion.div>
+
+            <div className="mt-8 flex items-center justify-center gap-6 border-t border-slate-200 dark:border-slate-800 pt-8">
+              <a href="https://github.com/rakholiyaayush321" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-100 dark:bg-slate-900 rounded-full text-foreground">
+                <Github size={20} />
+              </a>
+              <a href="https://linkedin.com/in/rakholiya-ayush" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-100 dark:bg-slate-900 rounded-full text-[#0a66c2]">
+                <Linkedin size={20} />
+              </a>
+              <a href="/resume.pdf" download className="p-3 bg-primary text-white rounded-full flex items-center gap-2">
+                <Download size={20} />
+              </a>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+      </div>
     </nav>
   );
 }
