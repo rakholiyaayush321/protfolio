@@ -1,12 +1,4 @@
-import { User, Code2, Cpu, Globe2, Zap, Brain, MessageSquare } from 'lucide-react';
-
-const stats = [
-  { label: 'Years Experience', value: '1+', icon: <User size={20} />, color: 'text-indigo-500' },
-  { label: 'Projects Completed', value: '10+', icon: <Code2 size={20} />, color: 'text-violet-500' },
-  { label: 'Technologies', value: '15+', icon: <Cpu size={20} />, color: 'text-sky-500' },
-  { label: 'Worldwide Reach', value: '🌍', icon: <Globe2 size={20} />, color: 'text-emerald-500' },
-];
-
+import { Code2, Cpu, Zap, Brain, MessageSquare } from 'lucide-react';
 const highlights = [
   { icon: <Brain size={18} />, text: 'Deep Learning & Neural Networks' },
   { icon: <MessageSquare size={18} />, text: 'LLMs & Generative AI' },
@@ -84,21 +76,7 @@ export default function About() {
               ))}
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {stats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 text-center hover:shadow-md transition-shadow"
-                >
-                  <div className={`${stat.color} flex justify-center mb-2`}>
-                    {stat.icon}
-                  </div>
-                  <div className="text-2xl font-black text-foreground">{stat.value}</div>
-                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+
           </div>
         </div>
       </div>

@@ -81,13 +81,13 @@ export default function Hero() {
 
         {/* Social Links */}
         <div className="flex items-center justify-center gap-6">
-          <a href="https://github.com/rakholiyaayush321" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-foreground transition-colors" aria-label="GitHub">
+          <a href="https://github.com/rakholiyaayush321" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-foreground transition-colors" aria-label="GitHub">
             <Github size={24} />
           </a>
-          <a href="https://linkedin.com/in/rakholiya-ayush" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#0a66c2] transition-colors" aria-label="LinkedIn">
+          <a href="https://linkedin.com/in/rakholiya-ayush" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-[#0a66c2] transition-colors" aria-label="LinkedIn">
             <Linkedin size={24} />
           </a>
-          <a href="mailto:rakholiyaayush894@gmail.com" className="text-slate-400 hover:text-[#ea4335] transition-colors" aria-label="Email">
+          <a href="mailto:rakholiyaayush894@gmail.com" className="text-slate-600 dark:text-slate-400 hover:text-[#ea4335] transition-colors" aria-label="Email">
             <Mail size={24} />
           </a>
         </div>
