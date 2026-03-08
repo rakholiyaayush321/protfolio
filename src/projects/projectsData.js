@@ -57,7 +57,7 @@ export const projects = [
     image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=800',
     tags: ['React', 'Tailwind CSS', 'Vite', 'Performance Optimization'],
     github: 'https://github.com/rakholiyaayush321',
-    demo: 'https://ayushrakholiya.netlify.app',
+    demo: 'https://rakholiya.netlify.app/',
     overview: 'A lightning-fast, ultra-optimized personal portfolio deployed on Netlify. Developed entirely to manifest a pristine professional aesthetic, demonstrating my exact capabilities in UX engineering, state management, and asset deployment. By eliminating heavy redundant rendering loops and leveraging native DOM mechanisms, it sets a gold-standard for modern web performance parameters.',
     keyFeatures: [
       'Sub-0.5s First Contentful Paint and flawless Lighthouse 95+ score',
